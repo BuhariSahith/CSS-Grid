@@ -1,0 +1,242 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", "sans-serif";
+  color: black;
+  padding: 8px;
+  margin: 0 auto;
+  max-width: 1500px;
+}
+
+.item {
+  border: 3px solid red;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 5px;
+}
+
+/* TASK #1 Pan Stack */
+
+.task1 {
+  display: grid;
+  height: 100vh;
+  grid-template-rows: auto 1fr auto;
+  text-align: center;
+}
+
+/* TASK #2 Simple 12 colums Grid Layouts */
+
+.height-50 {
+  height: 50vw;
+}
+
+.task2 {
+  display: grid;
+  /* height: 100vh; */
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 2px;
+  align-items: center;
+
+  text-align: center;
+}
+
+.task2 .box1 {
+  /* grid-column-start: 2;
+    grid-column-end: 6; */
+
+  grid-column: 2 / span 4;
+}
+
+.task2 .box2 {
+  grid-column: 6 / span 6;
+}
+
+/* TASK #3 Responsive Layouts -----opt_1 without----- and with grid-template-areas */
+
+.task3 {
+  display: grid;
+  height: 100vh;
+
+  grid-template-rows: auto auto 1fr auto auto auto;
+  grid-gap: 12px;
+}
+
+/* TABLET If the screen width is more than 720px activate this logic  */
+@media (min-width: 720px) {
+
+  .task3 {
+    grid-template-columns: repeat(12, 1fr);
+
+    grid-template-rows: auto auto 1fr auto;
+  }
+  .task3 .header {
+    grid-column: 1 / span 12;
+  }
+  .task3 .nav {
+    grid-column: 1 / span 12;
+  }
+  .task3 .main {
+    grid-column: 3 / span 10;
+  }
+  .task3 .aside {
+    grid-row: 3;
+    grid-column: 1 / span 2;
+  }
+  .task3 .ads {
+    grid-column: 1 / span 2;
+  }
+  .task3 .footer {
+    grid-column: 3 / span 10;
+  }
+}
+
+/* DESKTOP If the screen width is more than 1020px activate this logic  */
+
+@media (min-width: 1020px) {
+  .task3 .nav {
+    grid-column: 3 / span 8;
+  }
+  .task3 .main {
+    grid-column: 3 / span 8;
+  }
+  .task3 .aside {
+    grid-row: 2 / 4;
+
+    /* To enlarge the row what should i do ...? */
+    /* grid-row:  2 / 100 ; */
+    grid-column: 1 / span 2;
+  }
+  .task3 .ads {
+    grid-column: 11 / span 2;
+    grid-row: 2 / 4;
+  }
+  .task3 .footer {
+    grid-column: 1 / span 12;
+  }
+}
+
+/* TASK #3 Responsive Layouts without and -----opt_2------ with grid-template-areas  */
+
+.task3_opt_2 {
+    display: grid;
+    height: 100vh;
+    grid-gap: 20px;
+    grid-template-rows: auto auto 1fr auto auto auto;
+
+
+    /* We can place it in this oreder to display in the screen , after we can re-order as per we designed */
+    grid-template-areas: "header"
+    "nav"
+    "main"
+    "aside"
+    "ads"
+    "footer"
+}
+
+.header_opt2 {
+
+    grid-area: header;
+}
+.nav_opt2 {
+    
+    grid-area: nav;
+}
+.main_opt2 {
+    
+    grid-area: main;
+}
+.aside_opt2 {
+    
+    grid-area: aside;
+}
+.ads_opt2 {
+    
+    grid-area: ads;
+}
+.footer_opt2 {
+    
+    grid-area: footer;
+}
+
+/* TABLET If the screen width is more than 720px activate this logic  */
+@media (min-width: 720px) {
+    .task3_opt_2 {
+
+        /* What we are doing here is we have creting 3 columns and 4 rows  */
+    grid-template-areas:
+    "header header header"
+    "nav nav nav"
+    "aside main main"
+    "ads footer footer";
+    grid-template-rows: auto auto 1fr auto;
+    
+}
+
+}
+
+/* DESKTOP If the screen width is more than 1020px activate this logic  */
+
+@media (min-width: 1020px) {
+    .task3_opt_2 {
+        grid-template-areas:
+    "header header header header"
+    "aside nav nav ads"
+    "aside main main ads"
+    "footer footer footer footer";
+    grid-template-rows: auto auto 1fr auto;
+    }
+}
+
+
+
+/* TASK #4 Responsive Layouts without Media Queries */
+
+.task4 {
+    display: grid;
+    gap: 20px;
+
+    /* HERE WOTHOUT Media Qeries */
+
+    /* Here auto-fit , use the entire screen space */
+    grid-template-columns:  repeat(auto-fit , minmax(150px , 1fr)); 
+
+    /* here auto fill  use given space in box*/
+    /* grid-template-columns:  repeat(auto-fill , minmax(150px , 1fr)); */
+}
+.task4 .footer {
+    grid-column-end: span 2;
+
+}
+
+
+/* TASK #5 12 X 12 Column row not a grid 
+this is very usefull , when we want to write specfic content in Specific Area */
+
+.task5 {
+    display: grid;
+    height: 100vh;
+
+    grid-template-columns: repeat(12 , 1fr);
+    grid-template-rows:  repeat(12 , 1fr);
+}
+.task5 .header {
+    grid-row: 1/span 3;
+    grid-column: 1 / span 3;
+}
+.task5 .nav {
+    grid-row: 4 /span 3;
+    grid-column: 4 / span 3;
+    
+}
+.task5 .main {
+    grid-row:  7 /span 3;
+    grid-column:  7/ span 3;
+    
+}
+.task5 .aside { 
+    grid-row:  10 /span 3;
+    grid-column: 10 / span 3;
+    
+}
